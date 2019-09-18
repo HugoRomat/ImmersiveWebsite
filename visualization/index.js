@@ -50,7 +50,7 @@ var y = d3.scaleLinear()
 // append the svg object to the body of the page
 // append a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#resultsGraph").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -83,19 +83,19 @@ var svg = d3.select("body").append("svg")
          
          
          var BB = d3.select(this).node().getBoundingClientRect();
-         // console.log(BB)
+         console.log(BB)
          div.transition()		
             .duration(0)		
             .style("opacity", .9);		
          div.html(d.say)	
             .style("left", (BB.x) + "px")		
-            .style("top", (BB.y - 30) + "px");	
+            .style("top", (window.scrollY + BB.y - 30) + "px");	
          })					
-         .on("mouseout", function(d) {		
-               div.transition()		
-                  .duration(0)		
-                  .style("opacity", 0);	
-         });
+         // .on("mouseout", function(d) {		
+         //       div.transition()		
+         //          .duration(0)		
+         //          .style("opacity", 0);	
+         // });
 
 
       var g = place.append('g')
@@ -121,7 +121,7 @@ var svg = d3.select("body").append("svg")
    .attr('y', 0)
    .attr('width', 20)
    .attr('height', 20)
-   .attr("xlink:href", "avatar.png")
+   .attr("xlink:href", "visualization/avatar.png")
 
   // add the x Axis
   svg.append("g")
