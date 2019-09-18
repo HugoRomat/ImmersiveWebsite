@@ -67,7 +67,7 @@ function set3DModel(idElement, path, width, height){
       var scene = new THREE.Scene();
       // scene.background = new THREE.Color( 0xffffff );
       var camera = new THREE.PerspectiveCamera( 75, width/ height, 0.1, 1000 );
-      camera.position.set(0, -2,2); // Set position like this
+      camera.position.set(0, -1,1); // Set position like this
       camera.lookAt(new THREE.Vector3(0,0,0));
 
 
@@ -143,9 +143,13 @@ function set3DModel(idElement, path, width, height){
       
       mtlLoader.setTexturePath('object/userObj/');
       mtlLoader.setPath('object/userObj/');
-      mtlLoader.load('bmp.mtl', function (materials) {
 
+      mtlLoader.setMaterialOptions({side: THREE.DoubleSide})
+      mtlLoader.load('bmp.mtl', function (materials) {
+         // materials.setMaterialOptions({side: THREE.DoubleSide})
          materials.preload();
+         // console.log(materials)
+         
 
          var objLoader = new THREE.OBJLoader();
          objLoader.setMaterials(materials);
