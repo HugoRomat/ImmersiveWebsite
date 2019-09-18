@@ -39,7 +39,7 @@ var data = [
 var data_ = []; 
 var idArray = {};
 var globalArray = {};
- d3.csv("data - Copy - Copy.csv", function(dataCSV){
+ d3.csv("visualization/data.csv", function(dataCSV){
    // d3.csv("data - Copy - Copy.csv", function(dataCSV){
    delete dataCSV['2D First']
    // console.log(JSON.stringify(dataCSV))
@@ -120,7 +120,7 @@ function launchViz(data){
       // set the dimensions and margins of the graph
       var margin = {top: 20, right: 20, bottom: 30, left: 40},
          width = 1000 - margin.left - margin.right,
-         height = 4200 - margin.top - margin.bottom;
+         height = 3500 - margin.top - margin.bottom;
 
       // set the ranges
       var x = d3.scaleLinear()
@@ -192,9 +192,9 @@ function launchViz(data){
                var y = y1(d.Condition);
 
                console.log(y)
-               var x = (Math.ceil (d.id_/4));
+               var x = (Math.ceil (d.id_/3));
 
-               var y2 = (d.id_ - x*4) * 25;
+               var y2 = (d.id_ - x*3) * 25;
                // console.log(x2, y)
                // return "translate(" +  (x + x2) + ", "+ (height-(y*25))+")"; 
                return "translate("+(x*25)+","+(y+y2+80)+")"; 
@@ -217,7 +217,7 @@ function launchViz(data){
          .attr('y', 0)
          .attr('width', 20)
          .attr('height', 20)
-         .attr("xlink:href", "avatar.png")
+         .attr("xlink:href", "visualization/avatar.png")
          // .attr("xlink:href", "visualization/avatar.png")
          .attr('class', 'svgimg')
 
