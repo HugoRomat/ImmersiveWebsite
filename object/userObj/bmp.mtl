@@ -1,0 +1,6 @@
+newmtl Textured
+   Ka 1.000 1.000 1.000
+   Kd 1.000 1.000 1.000
+   map_Ka bmp.jpg           # the ambient texture map
+   map_Kd bmp.jpg           # the diffuse texture map (most of the time, it will
+
