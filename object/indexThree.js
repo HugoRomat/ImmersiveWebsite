@@ -83,13 +83,28 @@ function set3DModel(idElement, path, width, height){
       
 
       var controls = new THREE.OrbitControls(camera, renderer.domElement);
-      controls.enableDamping = true;
-      controls.dampingFactor = 0.25;
-      controls.enableZoom = true;
+      controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+				controls.dampingFactor = 0.05;
+				controls.screenSpacePanning = false;
+				// controls.minDistance = 100;
+				// controls.maxDistance = 500;
+            controls.maxPolarAngle = Math.PI / 2;
+            controls.minPolarAngle = Math.PI / 2;
+      // controls.enableDamping = true;
+      // controls.dampingFactor = 0.25;
+      // controls.enableZoom = true;
+      // controls.autoRotate = true;
 
-      controls.minPolarAngle = 0//Math.PI/2;
-      controls.maxPolarAngle = 0//Math.PI/2;
-console.log('HELLO')
+      // controls.minPolarAngle = -Math.PI/2;
+      // controls.maxPolarAngle = Math.PI/2;
+      // controls.maxPolarAngle = Math.PI/2; 
+      
+      // controls.minAzimuthAngle = 0//Math.PI/2;
+      // controls.maxAzimuthAngle = 0//Math.PI/2;
+
+      // controls
+
+// console.log('HELLO', controls)
          
       
       var keyLight = new THREE.DirectionalLight(new THREE.Color('hsl(100, 100%, 100%)'), 1.0);
@@ -114,10 +129,12 @@ console.log('HELLO')
 //       scene.add( light );
 
 
-      var geometry = new THREE.PlaneGeometry( 20, 20, 32 );
+      var geometry = new THREE.PlaneGeometry( 5, 5, 32 );
       var material = new THREE.MeshBasicMaterial( {color: 0xebebeb, side: THREE.DoubleSide} );
       var plane = new THREE.Mesh( geometry, material );
-      plane.position.z = -4;
+      
+      plane.rotation.set(-Math.PI/2, Math.PI/2000, Math.PI); 
+      plane.position.y = -1;
       scene.add( plane );
 
       // console.log(scene)
@@ -148,8 +165,8 @@ console.log('HELLO')
       
             //Rescale the object to normalized space
             var maxAxis = Math.max(size.x, size.y, size.z);
-            object.scale.multiplyScalar(1.0 / maxAxis);
-      
+            object.scale.multiplyScalar((1.0 / maxAxis) + 0.5);
+            // object.scale.multiplyScalar(30)
             //Now get the updated/scaled bounding box again..
             bbox.setFromObject(object);
             bbox.getCenter(cent);
@@ -159,9 +176,11 @@ console.log('HELLO')
             object.position.y = 0;
             object.position.z = -cent.z;
 
-            object.rotation.x = 90 * (Math.PI / 180)
-            object.rotation.y = -90 * (Math.PI / 180)
+            // object.rotation.x = 90 * (Math.PI / 180)
+            // object.rotation.y = -90 * (Math.PI / 180)
+            
 
+            controls.target = object.position;
             // camera.lookAt(scene.position);
             // camera.rotation.z = 65 * (Math.PI / 180)
 

@@ -1,339 +1,339 @@
 
 <html>
-  <head>
-    <link type="text/css" rel="stylesheet" href="lib/materialize/css/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="css/main.css" />
-
+    <head>
+      <link type="text/css" rel="stylesheet" href="lib/materialize/css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="css/main.css" />
   
     
-    
-    <title>Dear Pictograph</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  </head>
-  <style>
-    nav{
-      position: fixed;
-      top: 0px;
-      background-color: rgba(255, 255, 255, 0.67);
-    }
-    nav .nav-wrapper {
-    }
-    div.tooltip {	
-      position: absolute;
-      text-align: center;
-      display: inline-block;
-      /* width: 100; */
-      /* height: 28px; */
-      padding: 7px;
-      border-radius: 5px;
-      font: 12px sans-serif;
-      background: rgb(153, 180, 214);
-      /* border: 0px; */
-      /* border: solid 0.5px dimgrey; */
-      pointer-events: none;
-      font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    }
-    .imagesVR{
-      margin: 3px;
-    }
-    nav.nav-center ul {
+      
+      
+      <title>Dear Pictograph</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <style>
+      nav{
+        position: fixed;
+        top: 0px;
+        background-color: rgba(255, 255, 255, 0.67);
+      }
+      nav .nav-wrapper {
+      }
+      div.tooltip {	
+        position: absolute;
         text-align: center;
-    }
-    nav.nav-center ul li {
-        display: inline;
-        float: none;
+        display: inline-block;
+        /* width: 100; */
+        /* height: 28px; */
+        padding: 7px;
+        border-radius: 5px;
+        font: 12px sans-serif;
+        background: rgb(153, 180, 214);
+        /* border: 0px; */
+        /* border: solid 0.5px dimgrey; */
+        pointer-events: none;
+        font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+      }
+      .imagesVR{
+        margin: 3px;
+      }
+      nav.nav-center ul {
+          text-align: center;
+      }
+      nav.nav-center ul li {
+          display: inline;
+          float: none;
+          text-transform: uppercase;
+      }
+      nav.nav-center ul li a {
+        display: inline-block;
+        color: black;
+        font-size: 18px;
         text-transform: uppercase;
-    }
-    nav.nav-center ul li a {
-      display: inline-block;
-      color: black;
-      font-size: 18px;
-      text-transform: uppercase;
-      font-weight: 400;
-      letter-spacing: 1px;
-      color: black;
-      /* background-color: rgba(255, 255, 255, 0.24); */
-    }
-    #body{
-      width: 90%; 
-      margin-left: 5%; 
-    }
-    .col img{
-      width: 100%;
-    }
-    .headTitle2{
-      
-    }
-    iframe{
-      width: 100%;
-      /* height: 100%; */
-    }
-    #sketches{
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    #modal1{
-      top: 5% !important;
-      max-height: none;
-      height: 90%;
-      width: 80%;
-    }
-    #buttons{
-      display: flex;
-    justify-content: space-between;
-    }
-    .VR{
-      margin-bottom: 20px;
-      
-
-    }
-    .VR img{
-      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-    }
-    
-    .image2D{
-      margin-bottom: 20px;
-      
-
-    }
-    .image2D img{
-      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-    }
+        font-weight: 400;
+        letter-spacing: 1px;
+        color: black;
+        /* background-color: rgba(255, 255, 255, 0.24); */
+      }
+      #body{
+        width: 90%; 
+        margin-left: 5%; 
+      }
+      .col img{
+        width: 100%;
+      }
+      .headTitle2{
+        
+      }
+      iframe{
+        width: 100%;
+        /* height: 100%; */
+      }
+      #sketches{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      #modal1{
+        top: 5% !important;
+        max-height: none;
+        height: 90%;
+        width: 80%;
+      }
+      #buttons{
+        display: flex;
+      justify-content: space-between;
+      }
+      .VR{
+        margin-bottom: 20px;
+        
   
-  </style>
-
-  <body>
-
-
-    <div class="intro-header">
-
-    </div>
-
-  <nav class="nav-center" role="navigation">
-      <div class="nav-wrapper">
-        
-          <ul id="nav-mobile">
-              <li><a href="#">Home</a></li>
-              <li><a href="#study">Material</a></li>
-              <li><a href="#results">Results</a></li>
-              <li><a href="tool/index.html">2D Tool</a></li>
-          </ul>
-      </div>
-  </nav>
-
-    <div id='content'>
-
-
-  <div class="row">
-    <div class="col m8 offset-m2 headTitle center">
-      <h4>Dear Pictograph: Investigating the Role of Personalization and Immersion for Enjoying Data Visualizations </h4>
-    </div>
-    <div class="col m6 offset-m3 justify">
-      Much of the visualization literature focuses on assessment of  visual representations with regard to their effectiveness for understanding data. 
-      In the present work, we instead focus on making data visualization experiences more enjoyable, to foster deeper engagement with data.
-      <br/><br/>
-      We investigate two strategies to make visualization experiences more enjoyable and engaging: personalization, and immersion. 
-      We selected pictographs (composed of multiple data glyphs) as this representation affords creative freedom, allowing people to craft symbolic or whimsical shapes of personal significance to represent data. 
-      We present the results of a qualitative study with 12 participants crafting pictographs using a large pen-enabled device and while immersed within a Virtual Reality environment. 
-      Our results indicate that personalization and immersion both have positive impact on making visualizations more enjoyable experiences. 
-    </div>
-  </div>
-
-
-
-    <div id="body">
-      <section id="study">
-        <div class="row">
-          <div class="col m12 headTitle" style="font-size:180%">
-              Material from the study
-            <hr>
-          </div>
-          <div class="col m12 headTitle" style="font-size:130%">
-              VR condition
-          </div>
-          <div class="col m12">
-              Clik on an image to see it in the viewer
-          </div>
-        </div>
-
-
-        <div class="row" id="sketches"></div>
-
-        <div class="row">
-            <div class="col m12 headTitle" style="font-size:130%">
-                2D condition
-            </div>
-            <!-- <div class="col m12">
-                Clik on an image to see it in the viewer -->
-          </div>
-
-          <br/>
-          <div class="row" id="2Dsketches"></div>
-          <!-- Modal Structure -->
-        <div id="modal1" class="modal">
-          <div class="modal-content">
-            <div id='buttons'>
-              <p><button id="previous" class="waves-effect waves-light btn">Previous</button></p>
-              <p><button id="next" class="waves-effect waves-light btn">Next</button></p>
-            </div>
-            <p id="visualization"></p>
-          </div>
-          <!-- <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-          </div> -->
-        </div>
+      }
+      .VR img{
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+      }
       
+      .image2D{
+        margin-bottom: 20px;
+        
+  
+      }
+      .image2D img{
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+      }
+    
+    </style>
+  
+    <body>
+  
+  
+      <div class="intro-header">
+  
+      </div>
+  
+    <nav class="nav-center" role="navigation">
+        <div class="nav-wrapper">
           
-      
-
-
-
-        
-
-      </section>
-      <section id="results">
-          <div class="row">
-            <div class="col m12  headTitle" style="font-size:180%">
-                Results form the study
-              <hr>
-            </div>
-            
-          </div>
-        </section> 
-        <div class="row" id="resultsGraph"></div>
-      <!-- <section id="study">
-          <div class="row">
-            <div class="col m12  headTitle" style="font-size:180%">
-                Results form the study
-              <hr>
-            </div>
-            
-          </div>
-
-          <div class="row">
-            
-              <div class="col m12 headTitle2" style="font-size:140%">Realisations</div>
-          </div>
-          <div class="row">
-            <div class="col m2"><img src="images/teaser.png"/></div>
-            <div class="col m2"><img src="images/teaser.png"/></div>
-            <div class="col m2"><img src="images/teaser.png"/></div>
-            <div class="col m2 "><img src="images/teaser.png"/></div>
-            <div class="col m2"><img src="images/teaser.png"/></div>
-            <div class="col m2 "><img src="images/teaser.png"/></div>
-          </div>
-          <div class="row">
-              <div class="col m3"><img src="images/teaser.png"/></div>
-              <div class="col m3"><img src="images/teaser.png"/></div>
-              <div class="col m3"><img src="images/teaser.png"/></div>
-              <div class="col m3 "><img src="images/teaser.png"/></div>
-            </div>
-          <div class="row">
-              <div class="col m3"><img src="images/teaser.png"/></div>
-              <div class="col m3"><img src="images/teaser.png"/></div>
-              <div class="col m3"><img src="images/teaser.png"/></div>
-              <div class="col m3 "><img src="images/teaser.png"/></div>
-          </div>
-
-          <br/>
-          <div class="row">
-              <div class="col m12 headTitle2" style="font-size:140%">Observations</div>
-          </div>
-          <div class="row">
-            <div class="col m3"><img src="images/teaser.png"/></div>
-            <div class="col m3"><img src="images/teaser.png"/></div>
-            <div class="col m3"><img src="images/teaser.png"/></div>
-            <div class="col m3 "><img src="images/teaser.png"/></div>
-          </div>
-
-
-        </section> -->
-
-
-
+            <ul id="nav-mobile">
+                <li><a href="#">Home</a></li>
+                <li><a href="#study">Material</a></li>
+                <li><a href="#results">Results</a></li>
+                <li><a href="tool/index.html">2D Tool</a></li>
+            </ul>
+        </div>
+    </nav>
+  
+      <div id='content'>
+  
+  
+    <div class="row">
+      <div class="col m8 offset-m2 headTitle center">
+        <h4>Dear Pictograph: Investigating the Role of Personalization and Immersion for Enjoying Data Visualizations </h4>
       </div>
+      <div class="col m6 offset-m3 justify">
+        Much of the visualization literature focuses on assessment of  visual representations with regard to their effectiveness for understanding data. 
+        In the present work, we instead focus on making data visualization experiences more enjoyable, to foster deeper engagement with data.
+        <br/><br/>
+        We investigate two strategies to make visualization experiences more enjoyable and engaging: personalization, and immersion. 
+        We selected pictographs (composed of multiple data glyphs) as this representation affords creative freedom, allowing people to craft symbolic or whimsical shapes of personal significance to represent data. 
+        We present the results of a qualitative study with 12 participants crafting pictographs using a large pen-enabled device and while immersed within a Virtual Reality environment. 
+        Our results indicate that personalization and immersion both have positive impact on making visualizations more enjoyable experiences. 
       </div>
     </div>
-      <!-- <section id='study'>
+  
+  
+  
+      <div id="body">
+        <section id="study">
           <div class="row">
-            <div class="col m11 offset-m1 headTitle" style="font-size:180%">
-                
-              <hr/>
+            <div class="col m12 headTitle" style="font-size:180%">
+                Material from the study
+              <hr>
+            </div>
+            <div class="col m12 headTitle" style="font-size:130%">
+                VR condition
+            </div>
+            <div class="col m12">
+                Clik on an image to see it in the viewer
             </div>
           </div>
+  
+  
+          <div class="row" id="sketches"></div>
+  
+          <div class="row">
+              <div class="col m12 headTitle" style="font-size:130%">
+                  2D condition
+              </div>
+              <!-- <div class="col m12">
+                  Clik on an image to see it in the viewer -->
+            </div>
+  
+            <br/>
+            <div class="row" id="2Dsketches"></div>
+            <!-- Modal Structure -->
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+              <div id='buttons'>
+                <p><button id="previous" class="waves-effect waves-light btn">Previous</button></p>
+                <p><button id="next" class="waves-effect waves-light btn">Next</button></p>
+              </div>
+              <p id="visualization"></p>
+            </div>
+            <!-- <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+            </div> -->
+          </div>
+        
+            
+        
+  
+  
+  
+          
+  
+        </section>
+        <section id="results">
+            <div class="row">
+              <div class="col m12  headTitle" style="font-size:180%">
+                  Results form the study
+                <hr>
+              </div>
+              
+            </div>
+          </section> 
+          <div class="row" id="resultsGraph"></div>
+        <!-- <section id="study">
+            <div class="row">
+              <div class="col m12  headTitle" style="font-size:180%">
+                  Results form the study
+                <hr>
+              </div>
+              
+            </div>
+  
+            <div class="row">
+              
+                <div class="col m12 headTitle2" style="font-size:140%">Realisations</div>
+            </div>
+            <div class="row">
+              <div class="col m2"><img src="images/teaser.png"/></div>
+              <div class="col m2"><img src="images/teaser.png"/></div>
+              <div class="col m2"><img src="images/teaser.png"/></div>
+              <div class="col m2 "><img src="images/teaser.png"/></div>
+              <div class="col m2"><img src="images/teaser.png"/></div>
+              <div class="col m2 "><img src="images/teaser.png"/></div>
+            </div>
+            <div class="row">
+                <div class="col m3"><img src="images/teaser.png"/></div>
+                <div class="col m3"><img src="images/teaser.png"/></div>
+                <div class="col m3"><img src="images/teaser.png"/></div>
+                <div class="col m3 "><img src="images/teaser.png"/></div>
+              </div>
+            <div class="row">
+                <div class="col m3"><img src="images/teaser.png"/></div>
+                <div class="col m3"><img src="images/teaser.png"/></div>
+                <div class="col m3"><img src="images/teaser.png"/></div>
+                <div class="col m3 "><img src="images/teaser.png"/></div>
+            </div>
+  
+            <br/>
+            <div class="row">
+                <div class="col m12 headTitle2" style="font-size:140%">Observations</div>
+            </div>
+            <div class="row">
+              <div class="col m3"><img src="images/teaser.png"/></div>
+              <div class="col m3"><img src="images/teaser.png"/></div>
+              <div class="col m3"><img src="images/teaser.png"/></div>
+              <div class="col m3 "><img src="images/teaser.png"/></div>
+            </div>
+  
+  
           </section> -->
-    <script type="text/javascript" src="lib/materialize/js/materialize.min.js"></script>
-   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/87/three.min.js"></script>
-    <script src="object/assets/OrbitControls.js"></script>
-    <script src="object/assets/OBJLoader.js"></script>
-		<script src="object/assets/MTLLoader.js"></script>
-    <script src="object/indexThree.js"></script>
-    <script type="text/javascript" src="visualization/d3.v5.js" ></script>
-    <script type="text/javascript" src="visualization/index.js" ></script>
-
-
-    <script>
-
-      var iterationObject = 0;
-      // <a  data="`+i+`" href="#modal1"><div class="col m3 VR"><img src="images/Vrimages/1.PNG" /></div></a>
-      // <a class="waves-effect waves-light btn modal-trigger" data="`+i+`" href="#modal1"></a>
-    for (var i = 1; i< 40; i++){
-      $( "#sketches" ).append(`
-      <div class="col m2 l1 VR">
-          <a class="modal-trigger" data="`+i+`" href="#modal1"><img src="images/VRimages/`+i+`.PNG" /></a>
+  
+  
+  
         </div>
-        
-      `)
-      $( "#2Dsketches" ).append(`
-      <div class="col m2 l1 image2D">
-        <img src="images/2Dsketch/P (`+i+`).png" />
         </div>
+      </div>
+        <!-- <section id='study'>
+            <div class="row">
+              <div class="col m11 offset-m1 headTitle" style="font-size:180%">
+                  
+                <hr/>
+              </div>
+            </div>
+            </section> -->
+      <script type="text/javascript" src="lib/materialize/js/materialize.min.js"></script>
+     
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/87/three.min.js"></script>
+      <script src="object/assets/OrbitControls.js"></script>
+      <script src="object/assets/OBJLoader.js"></script>
+      <script src="object/assets/MTLLoader.js"></script>
+      <script src="object/indexThree.js"></script>
+      <script type="text/javascript" src="visualization/d3.v5.js" ></script>
+      <script type="text/javascript" src="visualization/index.js" ></script>
+  
+  
+      <script>
+  
+        var iterationObject = 0;
+        // <a  data="`+i+`" href="#modal1"><div class="col m3 VR"><img src="images/Vrimages/1.PNG" /></div></a>
+        // <a class="waves-effect waves-light btn modal-trigger" data="`+i+`" href="#modal1"></a>
+      for (var i = 1; i< 40; i++){
+        $( "#sketches" ).append(`
+        <div class="col m2 l1 VR">
+            <a class="modal-trigger" data="`+i+`" href="#modal1"><img src="images/VRimages/`+i+`.PNG" /></a>
+          </div>
+          
+        `)
+        $( "#2Dsketches" ).append(`
+        <div class="col m2 l1 image2D">
+          <img src="images/2Dsketch/P (`+i+`).png" />
+          </div>
+          
+        `)
+  
         
-      `)
-
-      
-      
-    }
-
-
- document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems, {});
-
-    $( "#previous" ).click(function() {
-      if (iterationObject >= 2){
-        iterationObject--;
-        set3DModel('visualization', ` object (`+iterationObject+`)`, $("#modal1" ).width(), $("#modal1" ).height())
+        
       }
-    })
-    $( "#next" ).click(function() {
-      // console.log(iterationObject)
-      if (iterationObject <= 39){
-        iterationObject++;
-        set3DModel('visualization', ` object (`+iterationObject+`)`, $("#modal1" ).width(), $("#modal1" ).height())
-      }
-    })
-
-    $( ".modal-trigger" ).click(function() {
-      var data = $(this).attr('data');
+  
+  
+   document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems, {});
+  
+      $( "#previous" ).click(function() {
+        if (iterationObject >= 2){
+          iterationObject--;
+          set3DModel('visualization', `object (`+iterationObject+`)`, $("#modal1" ).width(), $("#modal1" ).height())
+        }
+      })
+      $( "#next" ).click(function() {
+        // console.log(iterationObject)
+        if (iterationObject <= 39){
+          iterationObject++;
+          set3DModel('visualization', `object (`+iterationObject+`)`, $("#modal1" ).width(), $("#modal1" ).height())
+        }
+      })
+  
+      $( ".modal-trigger" ).click(function() {
+        var data = $(this).attr('data');
+        
+        set3DModel('visualization', `object (`+data+`)`, $("#modal1" ).width(), $("#modal1" ).height())
+  
+        // var regExp = /\(([^)]+)\)/;
+        // var matches = parseInt(regExp.exec(data)[1]);
+        iterationObject = data;
+      })
+    });
+  
+  
       
-      set3DModel('visualization', ` object (`+data+`)`, $("#modal1" ).width(), $("#modal1" ).height())
-
-      // var regExp = /\(([^)]+)\)/;
-      // var matches = parseInt(regExp.exec(data)[1]);
-      iterationObject = data;
-    })
-  });
-
-
-    
-    
-    
-    </script>
-  </body>
-</html>
+      
+      
+      </script>
+    </body>
+  </html>

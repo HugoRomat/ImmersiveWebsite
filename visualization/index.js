@@ -39,7 +39,7 @@ var data = [
 var data_ = []; 
 var idArray = {};
 var globalArray = {};
- d3.csv("visualization/data - Copy - Copy.csv", function(dataCSV){
+ d3.csv("data - Copy - Copy.csv", function(dataCSV){
    // d3.csv("data - Copy - Copy.csv", function(dataCSV){
    delete dataCSV['2D First']
    // console.log(JSON.stringify(dataCSV))
@@ -217,14 +217,14 @@ function launchViz(data){
          .attr('y', 0)
          .attr('width', 20)
          .attr('height', 20)
+         .attr("xlink:href", "avatar.png")
          // .attr("xlink:href", "visualization/avatar.png")
-         .attr("xlink:href", "visualization/avatar.png")
          .attr('class', 'svgimg')
 
       // add the x Axis
-  svg.append("g")
-  .attr("transform", "translate(0," + height + ")")
-  .call(d3.axisBottom(x));
+//   svg.append("g")
+//   .attr("transform", "translate(0," + height + ")")
+//   .call(d3.axisBottom(x));
 
 // add the y Axis
 svg.append("g")
