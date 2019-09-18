@@ -101,6 +101,15 @@
       .image2D img{
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
       }
+      #loading{
+        position: absolute;
+        left: 47%;
+        top: 0%;
+        width: 67px;
+      }
+      #loading img{
+        width: 100%;
+      }
     
     </style>
   
@@ -176,6 +185,7 @@
             <div class="modal-content">
               <div id='buttons'>
                 <p><button id="previous" class="waves-effect waves-light btn">Previous</button></p>
+                <p id="loading"><img src="images/loader.gif" /></p>
                 <p><button id="next" class="waves-effect waves-light btn">Next</button></p>
               </div>
               <p id="visualization"></p>
@@ -278,7 +288,7 @@
   
   
       <script>
-  
+  $("#loading").hide();
         var iterationObject = 0;
         // <a  data="`+i+`" href="#modal1"><div class="col m3 VR"><img src="images/Vrimages/1.PNG" /></div></a>
         // <a class="waves-effect waves-light btn modal-trigger" data="`+i+`" href="#modal1"></a>
@@ -308,21 +318,33 @@
       $( "#previous" ).click(function() {
         if (iterationObject >= 2){
           iterationObject--;
-          set3DModel('visualization', `object (`+iterationObject+`)`, $("#modal1" ).width(), $("#modal1" ).height())
+          $("#loading").show();
+          set3DModel('visualization', `object (`+iterationObject+`)`, $("#modal1" ).width(), $("#modal1" ).height()).then(()=>{
+          // console.log('GO')
+          $("#loading").hide();
+        })
         }
       })
       $( "#next" ).click(function() {
         // console.log(iterationObject)
         if (iterationObject <= 39){
           iterationObject++;
-          set3DModel('visualization', `object (`+iterationObject+`)`, $("#modal1" ).width(), $("#modal1" ).height())
+          $("#loading").show();
+          set3DModel('visualization', `object (`+iterationObject+`)`, $("#modal1" ).width(), $("#modal1" ).height()).then(()=>{
+          // console.log('GO')
+          $("#loading").hide();
+        })
         }
       })
   
       $( ".modal-trigger" ).click(function() {
         var data = $(this).attr('data');
-        
-        set3DModel('visualization', `object (`+data+`)`, $("#modal1" ).width(), $("#modal1" ).height())
+        // $("#loading").html('loading')
+        $("#loading").show();
+        set3DModel('visualization', `object (`+data+`)`, $("#modal1" ).width(), $("#modal1" ).height()).then(()=>{
+          console.log('GO')
+          $("#loading").hide();
+        })
   
         // var regExp = /\(([^)]+)\)/;
         // var matches = parseInt(regExp.exec(data)[1]);
