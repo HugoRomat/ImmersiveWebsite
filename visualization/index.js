@@ -1,7 +1,7 @@
 var data = [
-   {"id_": 1, "type": "experience", "parameters":"VR", 'say':'hello'},
+   {"id_": 1, "type": "experience", "parameters":"VR", 'say':'I didnt have much to say'},
    {"id_": 2, "type": "experience", "parameters":"VR", 'say':'hello'},
-   {"id_": 3, "type": "experience", "parameters":"VR", 'say':'hello'},
+   {"id_": 3, "type": "experience", "parameters":"VR", 'say':'hihihihi'},
    {"id_": 4, "type": "experience", "parameters":"VR", 'say':'hello'},
    {"id_": 1, "type": "experience", "parameters":"2D", 'say':'hello'},
    {"id_": 2, "type": "experience", "parameters":"2D", 'say':'hello'},
@@ -78,6 +78,7 @@ var svg = d3.select("#resultsGraph").append("svg")
   var place = svg.selectAll(".bar")
       .data(data)
       .enter().append('g').attr('class', 'bar')
+      .style('cursor', 'pointer')
       .attr("transform", function(d) {return "translate(" +  (x(d.type) + 80) + ", -5)"; })
       .on("mouseover", function(d) {	
          
@@ -88,14 +89,14 @@ var svg = d3.select("#resultsGraph").append("svg")
             .duration(0)		
             .style("opacity", .9);		
          div.html(d.say)	
-            .style("left", (BB.x) + "px")		
-            .style("top", (window.scrollY + BB.y - 30) + "px");	
+            .style("left", (BB.x +10) + "px")		
+            .style("top", (window.scrollY + BB.y - 35) + "px");	
          })					
-         // .on("mouseout", function(d) {		
-         //       div.transition()		
-         //          .duration(0)		
-         //          .style("opacity", 0);	
-         // });
+         .on("mouseout", function(d) {		
+               div.transition()		
+                  .duration(0)		
+                  .style("opacity", 0);	
+         });
 
 
       var g = place.append('g')
