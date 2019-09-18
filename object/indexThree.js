@@ -65,7 +65,9 @@ function set3DModel(idElement, path, width, height){
 
 
       var scene = new THREE.Scene();
-      // scene.background = new THREE.Color( 0xffffff );
+      scene.background = new THREE.Color( 0xffffff );
+
+      
       var camera = new THREE.PerspectiveCamera( 75, width/ height, 0.1, 1000 );
       camera.position.set(0, -1,1); // Set position like this
       camera.lookAt(new THREE.Vector3(0,0,0));
