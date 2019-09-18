@@ -39,7 +39,8 @@ var data = [
 var data_ = []; 
 var idArray = {};
 var globalArray = {};
- d3.csv("data - Copy - Copy.csv", function(dataCSV){
+ d3.csv("visualization/data - Copy - Copy.csv", function(dataCSV){
+   // d3.csv("data - Copy - Copy.csv", function(dataCSV){
    delete dataCSV['2D First']
    // console.log(JSON.stringify(dataCSV))
 
@@ -118,15 +119,17 @@ function launchViz(data){
 
       // set the dimensions and margins of the graph
       var margin = {top: 20, right: 20, bottom: 30, left: 40},
-         width = 3500 - margin.left - margin.right,
-         height = 750 - margin.top - margin.bottom;
+         width = 1000 - margin.left - margin.right,
+         height = 4200 - margin.top - margin.bottom;
 
       // set the ranges
-      var x = d3.scaleBand()
+      var x = d3.scaleLinear()
                .range([0, width])
+               
+      var y = d3.scaleBand()
+               .range([height, 0])
                .padding(0.1);
-      var y = d3.scaleLinear()
-               .range([height, 0]);
+
 
       var colorParticipant = d3.scaleOrdinal(d3.schemeSet3);
       // append the svg object to the body of the page
@@ -146,10 +149,10 @@ function launchViz(data){
       // format the data
 
       // Scale the range of the data in the domains
-      x.domain(data.map(function(d) { return d.type; }));
+      y.domain(data.map(function(d) { return d.type; }));
 
-      var x1 = d3.scaleBand()
-            .rangeRound([0, x.bandwidth()])
+      var y1 = d3.scaleBand()
+            .rangeRound([0, y.bandwidth()])
             .padding(0.1)
             .domain(data.map(function(d) { return d.Condition; }));
 
@@ -161,7 +164,10 @@ function launchViz(data){
             .data(data)
             .enter().append('g').attr('class', 'bar')
             .style('cursor', 'pointer')
-            .attr("transform", function(d) {return "translate(" +  (x(d.type) + 80) + ", -5)"; })
+            .attr("transform", function(d) {
+               // console.log(y(d.type))
+               return "translate(0, " +  (y(d.type))+")"; 
+            })
             .on("mouseover", function(d) {	
                
                
@@ -170,7 +176,7 @@ function launchViz(data){
                div.transition()		
                   .duration(0)		
                   .style("opacity", .9);		
-               div.html(d.part)	
+               div.html(d.Participant +" - "+d.Observations)	
                   .style("left", (BB.x +10) + "px")		
                   .style("top", (window.scrollY + BB.y - 35) + "px");	
                })					
@@ -183,12 +189,15 @@ function launchViz(data){
 
             var g = place.append('g')
             .attr("transform", function(d) {
-               var x = x1(d.Condition);
-               var y = (Math.ceil (d.id_/4));
+               var y = y1(d.Condition);
 
-               var x2 = (d.id_ - y*4) * 20;
+               console.log(y)
+               var x = (Math.ceil (d.id_/4));
+
+               var y2 = (d.id_ - x*4) * 25;
                // console.log(x2, y)
-               return "translate(" +  (x + x2) + ", "+ (height-(y*25))+")"; 
+               // return "translate(" +  (x + x2) + ", "+ (height-(y*25))+")"; 
+               return "translate("+(x*25)+","+(y+y2+80)+")"; 
             
             })
             
@@ -208,19 +217,18 @@ function launchViz(data){
          .attr('y', 0)
          .attr('width', 20)
          .attr('height', 20)
+         // .attr("xlink:href", "visualization/avatar.png")
          .attr("xlink:href", "visualization/avatar.png")
          .attr('class', 'svgimg')
 
       // add the x Axis
-      svg.append("g")
-            .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x))
+  svg.append("g")
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x));
 
-            
-
-      // add the y Axis
-      svg.append("g")
-            .call(d3.axisLeft(y).tickFormat("").tickValues([]));
+// add the y Axis
+svg.append("g")
+  .call(d3.axisLeft(y));
 
 
 

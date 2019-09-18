@@ -87,6 +87,11 @@ function set3DModel(idElement, path, width, height){
       controls.dampingFactor = 0.25;
       controls.enableZoom = true;
 
+      controls.minPolarAngle = 0//Math.PI/2;
+      controls.maxPolarAngle = 0//Math.PI/2;
+console.log('HELLO')
+         
+      
       var keyLight = new THREE.DirectionalLight(new THREE.Color('hsl(100, 100%, 100%)'), 1.0);
       keyLight.position.set(-10, 0, 10);
 
@@ -169,7 +174,7 @@ function set3DModel(idElement, path, width, height){
       var animate = function () {
          requestAnimationFrame( animate );
          controls.update();
-         
+
          renderer.render(scene, camera);
          // camera.rotation.z +=0.1;
          // var speed = Date.now() * 0.00025;
