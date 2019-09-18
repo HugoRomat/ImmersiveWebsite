@@ -118,7 +118,7 @@ function launchViz(data){
 
 
       // set the dimensions and margins of the graph
-      var margin = {top: 20, right: 20, bottom: 30, left: 40},
+      var margin = {top: 20, right: 20, bottom: 30, left: 200},
          width = 1000 - margin.left - margin.right,
          height = 3500 - margin.top - margin.bottom;
 
@@ -197,7 +197,7 @@ function launchViz(data){
                var y2 = (d.id_ - x*3) * 25;
                // console.log(x2, y)
                // return "translate(" +  (x + x2) + ", "+ (height-(y*25))+")"; 
-               return "translate("+(x*25)+","+(y+y2+80)+")"; 
+               return "translate("+(x*25)+","+(y+y2+60)+")"; 
             
             })
             
@@ -237,4 +237,26 @@ svg.append("g")
       var div = d3.select("body").append("div")	
             .attr("class", "tooltip")				
             .style("opacity", 0);
+
+
+
+            
+           
+      svg.selectAll('.tick text').each(insertLinebreaks);
+
 }
+var insertLinebreaks = function (d) {
+   var el = d3.select(this);
+   var words = d.split(' ');
+   el.text('');
+   var j =0
+   for (var i = 0; i < words.length; i++) {
+       var tspan = el.append('tspan').text(words[i]+" ");
+       j++
+       if (j > 5){
+         tspan.attr('x', -20).attr('dy', '15');
+         j=0;
+       }
+          
+   }
+};
