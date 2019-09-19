@@ -118,7 +118,7 @@
         width: 90%; 
         margin-left: 5%; 
       }
-      #sketches,#sketches2D, #Object3D, #sketches2Dchoosen{
+      #Object3D, #sketches2Dchoosen{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -132,6 +132,27 @@
       .image2D img, .GlyphsVR img, .ImagesVR img, .sketches2Dchoosen img{
         width: 100%;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+      }
+
+
+      .cell{
+        width:  7%;
+        margin: 0.2%;
+      }
+      .cell img{
+        width: 100%;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+      }
+      .rowTab{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        justify-content: center;
+      }
+      .labels{
+        text-align: center;
       }
       
       
@@ -231,9 +252,9 @@
             <div id="modal1" class="modal">
               <div class="modal-content">
                 <div id='buttons'>
-                  <p><button id="previous" class="waves-effect waves-light btn">Previous</button></p>
+                  <!-- <p><button id="previous" class="waves-effect waves-light btn">Previous</button></p> -->
                   <p id="loading"><img src="images/loader.gif" /></p>
-                  <p><button id="next" class="waves-effect waves-light btn">Next</button></p>
+                  <!-- <p><button id="next" class="waves-effect waves-light btn">Next</button></p> -->
                 </div>
                 <p id="visualization"></p>
               </div>
@@ -285,28 +306,94 @@
         var itemChoosen = 'userObj';
         // <a  data="`+i+`" href="#modal1"><div class="col m3 VR"><img src="images/Vrimages/1.PNG" /></div></a>
         // <a class="waves-effect waves-light btn modal-trigger" data="`+i+`" href="#modal1"></a>
-      for (var i = 1; i< 40; i++){
-        $( "#sketches" ).append(`
-        <div class="GlyphsVR">
-            <a class="modal-trigger" data="`+i+`_userObj" href="#modal1"><img src="images/VRimages/`+i+`.PNG" /></a>
-          </div>`)
-        $( "#sketches2D" ).append(`
-        <div class="image2D">
-          <img src="images/2Dsketch/P (`+i+`).png" />
-          </div>`)
-      }
+      // for (var i = 1; i< 40; i++){
+      //   $( "#sketches" ).append(`
+      //   <div class="GlyphsVR">
+      //       <a class="modal-trigger" data="`+i+`_userObj" href="#modal1"><img src="images/VRimages/`+i+`.PNG" /></a>
+      //     </div>`)
+      //   }
+        var entity = $('#sketches').append('<div class="rowTab labels"></div>');
+        var divEntity = $('#sketches').children(":last")
+        for (var i = 1; i< 14; i++){
+          if (i==1) divEntity.append(`<div class="cell"> </div>`)
+          else divEntity.append(`<div class="cell"> P`+(i-1)+`</div>`)
+        }
+        var entity = $('#sketches').append('<div class="rowTab"></div>');
+        var divEntity = $('#sketches').children(":last")
+        divEntity.append(`<div class="cell"> Positive </div>`)
+        for (var i = 2; i< 14; i++){
+          divEntity.append(` <div class="cell"><a class="modal-trigger" participant="`+i+`" data="0_userObj" href="#modal1"><img src="images/VRimages/P`+i+`(0).PNG" /></a></div>`)
+        }
+        var entity = $('#sketches').append('<div class="rowTab"></div>');
+        var divEntity = $('#sketches').children(":last")
+        divEntity.append(`<div class="cell"> Neutral </div>`)
+        for (var i = 2; i< 14; i++){
+          divEntity.append(` <div class="cell"><a class="modal-trigger" participant="`+i+`" data="1_userObj" href="#modal1"><img src="images/VRimages/P`+i+`(1).PNG" /></a></div>`)
+        }
+        var entity = $('#sketches').append('<div class="rowTab"></div>');
+        var divEntity = $('#sketches').children(":last")
+        divEntity.append(`<div class="cell"> Negative </div>`)
+        for (var i = 2; i< 14; i++){
+          divEntity.append(` <div class="cell"><a class="modal-trigger" participant="`+i+`" data="2_userObj" href="#modal1"><img src="images/VRimages/P`+i+`(2).PNG" /></a></div>`)
+        }
+
+
+        /**** POUR LES IMAGES ****/
+        var entity = $('#sketches2D').append('<div class="rowTab labels"></div>');
+        var divEntity = $('#sketches2D').children(":last")
+        for (var i = 1; i< 14; i++){
+          if (i==1) divEntity.append(`<div class="cell"> </div>`)
+          else divEntity.append(`<div class="cell"> P`+(i-1)+`</div>`)
+        }
+        var entity = $('#sketches2D').append('<div class="rowTab"></div>');
+        var divEntity = $('#sketches2D').children(":last")
+        divEntity.append(`<div class="cell"> Positive </div>`)
+        for (var i = 2; i< 14; i++){
+          divEntity.append(` <div class="cell"><img src="images/2D sketches - ppt/p`+i+`-diagram1.png" /></div>`)
+        }
+        var entity = $('#sketches2D').append('<div class="rowTab"></div>');
+        var divEntity = $('#sketches2D').children(":last")
+        divEntity.append(`<div class="cell"> Neutral  </div>`)
+        for (var i = 2; i< 14; i++){
+          divEntity.append(`<div class="cell"><img src="images/2D sketches - ppt/p`+i+`-diagram2.png" /> </div>`)
+        }
+        var entity = $('#sketches2D').append('<div class="rowTab"></div>');
+        var divEntity = $('#sketches2D').children(":last")
+        divEntity.append(`<div class="cell"> Negative  </div>`)
+        for (var i = 2; i< 14; i++){
+          divEntity.append(`<div class="cell"><img src="images/2D sketches - ppt/p`+i+`-diagram3.png" /></div>`)
+        }
+
+
+        
+        // for (var i = 1; i< 14; i++){
+        //   $( "#sketches2D" ).append(`
+        //   <div class="cell">
+        //     <img src="images/2D sketches - ppt/p1-diagram1.png" />
+        //   </div>`)
+        // }
+
+        // for (var i = 1; i< 14; i++){
+        //   $( "#sketches2D" ).append(`
+        //   <div class="cell">
+        //     <img src="images/2D sketches - ppt/p1-diagram1.png" />
+        //   </div>`)
+        // }
+
+
+      
 
 
       for (var i = 1; i< 17; i++){
         $( "#Object3D" ).append(`
-        <div class="ImagesVR">
+        <div class="cell">
             <a class="modal-trigger" data="`+i+`_3dshapes" href="#modal1"><img src="images/VRchooseImages/`+i+`.PNG" /></a>
           </div>`)
       }
 
       for (var i = 1; i< 49; i++){
         $( "#sketches2Dchoosen" ).append(`
-        <div class="image2D">
+        <div class="cell">
            <img src="images/2DchooseImages/`+i+`.png" />
           </div>`)
       }
@@ -318,50 +405,60 @@
       var elems = document.querySelectorAll('.modal');
       var instances = M.Modal.init(elems, {});
   
-      $( "#previous" ).click(function() {
-        if (iterationObject >= 2){
-          iterationObject--;
-          $("#loading").show();
-          set3DModel('visualization',itemChoosen, `object (`+iterationObject+`)`, $("#modal1" ).width(), $("#modal1" ).height()).then(()=>{
-          // console.log('GO')
-            $("#loading").hide();
-          })
-        }
-      })
-      $( "#next" ).click(function() {
-        console.log(iterationObject)
-        if ((iterationObject <= 38 && itemChoosen == 'userObj') || (iterationObject <= 15 && itemChoosen == '3dshapes')){
-          iterationObject++;
-          $("#loading").show();
-          set3DModel('visualization',itemChoosen, `object (`+iterationObject+`)`, $("#modal1" ).width(), $("#modal1" ).height()).then(()=>{
-          // console.log('GO')
-            $("#loading").hide();
-          })
-        }
+      // $( "#previous" ).click(function() {
+      //   if (iterationObject >= 2){
+      //     iterationObject--;
+      //     $("#loading").show();
+      //     set3DModel('visualization',itemChoosen, `object (`+iterationObject+`)`, $("#modal1" ).width(), $("#modal1" ).height()).then(()=>{
+      //     // console.log('GO')
+      //       $("#loading").hide();
+      //     })
+      //   }
+      // })
+      // $( "#next" ).click(function() {
+      //   console.log(iterationObject)
+      //   if ((iterationObject <= 38 && itemChoosen == 'userObj') || (iterationObject <= 15 && itemChoosen == '3dshapes')){
+      //     iterationObject++;
+      //     $("#loading").show();
+      //     set3DModel('visualization',itemChoosen, `object (`+iterationObject+`)`, $("#modal1" ).width(), $("#modal1" ).height()).then(()=>{
+      //     // console.log('GO')
+      //       $("#loading").hide();
+      //     })
+      //   }
         
-      })
+      // })
   
       $( ".modal-trigger" ).click(function() {
         var data = $(this).attr('data').split('_')[0];
-        var path = $(this).attr('data').split('_')[1]
-        // $("#loading").html('loading')
+        var participant = $(this).attr('participant');
+        var path = $(this).attr('data').split('_')[1];
+
+        console.log(participant)
+      
         $("#loading").show();
-        // console.log('visualization', path, `object (`+data+`)`)
-        itemChoosen = path;
-        set3DModel('visualization', path, `object (`+data+`)`, $("#modal1" ).width(), $("#modal1" ).height()).then(()=>{
-          console.log('GO')
-          $("#loading").hide();
-        })
+
+        if (participant == undefined){
+          set3DModel('visualization', path, `object (`+data+`)`, $("#modal1" ).width(), $("#modal1" ).height()).then(()=>{
+            console.log('GO')
+            $("#loading").hide();
+          })
+        } else{
+          set3DModel('visualization', path, `P`+participant+`(`+data+`)`, $("#modal1" ).width(), $("#modal1" ).height()).then(()=>{
+            console.log('GO')
+            $("#loading").hide();
+          })
+        }
+
+        
+        
   
         // var regExp = /\(([^)]+)\)/;
         // var matches = parseInt(regExp.exec(data)[1]);
+        itemChoosen = path;
         iterationObject = data;
       })
     });
-  
-  
-      
-      
+ 
       
       </script>
     </body>
