@@ -124,8 +124,8 @@ function launchViz(data){
 
       // set the dimensions and margins of the graph
       var margin = {top: 20, right: 20, bottom: 30, left: 300},
-         width = 1500 - margin.left - margin.right,
-         height = 3500 - margin.top - margin.bottom;
+         width = 3000 - margin.left - margin.right,
+         height = 1000 - margin.top - margin.bottom;
 
       // set the ranges
       var x = d3.scaleLinear()
@@ -198,8 +198,8 @@ function launchViz(data){
                // if (d.type == "Personal - Making it personal" && d.Condition == "VR") console.log(d)
 
                var y = y1(d.Condition);
-               var x = (Math.ceil (d.id_/3));
-               var y2 = (d.id_ - x*3) * 25; 
+               var x = (Math.ceil (d.id_));
+               var y2 = (d.id_ - x) * 25; 
                return "translate("+(x*25)+","+(y+y2+60)+")"; 
             
             })
