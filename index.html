@@ -150,9 +150,19 @@
         justify-content: center;
         align-items: center;
         justify-content: center;
+        width: 100%;
       }
       .labels{
         text-align: center;
+      }
+
+      .cell2{
+        width: 11%;
+        margin: 0.5%;
+      }
+      .cell2 img{
+        width: 100%;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
       }
       
       
@@ -384,13 +394,26 @@
       
 
 
-      for (var i = 1; i< 17; i++){
-        $( "#Object3D" ).append(`
-        <div class="cell">
-            <a class="modal-trigger" data="`+i+`_3dshapes" href="#modal1"><img src="images/VRchooseImages/`+i+`.PNG" /></a>
-          </div>`)
-      }
+      // for (var i = 1; i< 17; i++){
+      //   $( "#Object3D" ).append(`
+      //   <div class="cell">
+      //       <a class="modal-trigger" data="`+i+`_3dshapes" href="#modal1"><img src="images/VRchooseImages/`+i+`.PNG" /></a>
+      //     </div>`)
+      // }
 
+      var k =1;
+      for (var j = 0; j< 2; j++){
+        var entity = $('#Object3D').append('<div class="rowTab"></div>');
+        var divEntity = $('#Object3D').children(":last")
+        for (var i = 0; i< 8; i++){
+          // console.log(k)
+          divEntity.append(`
+          <div class="cell">
+            <a class="modal-trigger" data="`+k+`_3dshapes" href="#modal1"><img src="images/VRchooseImages/`+k+`.PNG" /></a>
+          </div>`)
+          k++;
+        }
+      }
 
       // for (var i = 1; i< 49; i++){
       //   $( "#sketches2Dchoosen" ).append(`
