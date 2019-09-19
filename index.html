@@ -55,8 +55,7 @@
         /* background-color: rgba(255, 255, 255, 0.24); */
       }
       #body{
-        width: 90%; 
-        margin-left: 5%; 
+        
       }
       .col img{
         width: 100%;
@@ -110,7 +109,13 @@
       #loading img{
         width: 100%;
       }
-    
+      #resultsGraph{
+
+      }
+      #study, #results{
+        width: 90%; 
+        margin-left: 5%; 
+      }
     </style>
   
     <body>
@@ -159,11 +164,11 @@
                 Material from the study
               <hr>
             </div>
-            <div class="col m12 headTitle" style="font-size:130%">
-                VR condition
+            <div class="col m12 headTitle" style="font-size:180%">
+                Glyphs drawn in the VR condition
             </div>
-            <div class="col m12">
-                Clik on an image to see it in the viewer
+            <div class="col m12" style="font-size:130%">
+                You can click on an image to see it in a 3D viewer.
             </div>
           </div>
   
@@ -171,8 +176,8 @@
           <div class="row" id="sketches"></div>
   
           <div class="row">
-              <div class="col m12 headTitle" style="font-size:130%">
-                  2D condition
+              <div class="col m12 headTitle" style="font-size:180%">
+                Glyphs drawn in the 2D condition
               </div>
               <!-- <div class="col m12">
                   Clik on an image to see it in the viewer -->
@@ -211,69 +216,22 @@
               </div>
               
             </div>
+            <div class="row">
+              <div class="col m12  headTitle" style="font-size:120%">
+                  Each square represent a specific quote that a participants made about a specific condition.
+                  <br/>
+                  You can hover it to see the quote.   
+              </div>
+              
+            </div>
           </section> 
+
+          
           <div class="row" id="resultsGraph"></div>
-        <!-- <section id="study">
-            <div class="row">
-              <div class="col m12  headTitle" style="font-size:180%">
-                  Results form the study
-                <hr>
-              </div>
-              
-            </div>
-  
-            <div class="row">
-              
-                <div class="col m12 headTitle2" style="font-size:140%">Realisations</div>
-            </div>
-            <div class="row">
-              <div class="col m2"><img src="images/teaser.png"/></div>
-              <div class="col m2"><img src="images/teaser.png"/></div>
-              <div class="col m2"><img src="images/teaser.png"/></div>
-              <div class="col m2 "><img src="images/teaser.png"/></div>
-              <div class="col m2"><img src="images/teaser.png"/></div>
-              <div class="col m2 "><img src="images/teaser.png"/></div>
-            </div>
-            <div class="row">
-                <div class="col m3"><img src="images/teaser.png"/></div>
-                <div class="col m3"><img src="images/teaser.png"/></div>
-                <div class="col m3"><img src="images/teaser.png"/></div>
-                <div class="col m3 "><img src="images/teaser.png"/></div>
-              </div>
-            <div class="row">
-                <div class="col m3"><img src="images/teaser.png"/></div>
-                <div class="col m3"><img src="images/teaser.png"/></div>
-                <div class="col m3"><img src="images/teaser.png"/></div>
-                <div class="col m3 "><img src="images/teaser.png"/></div>
-            </div>
-  
-            <br/>
-            <div class="row">
-                <div class="col m12 headTitle2" style="font-size:140%">Observations</div>
-            </div>
-            <div class="row">
-              <div class="col m3"><img src="images/teaser.png"/></div>
-              <div class="col m3"><img src="images/teaser.png"/></div>
-              <div class="col m3"><img src="images/teaser.png"/></div>
-              <div class="col m3 "><img src="images/teaser.png"/></div>
-            </div>
-  
-  
-          </section> -->
-  
-  
-  
+
         </div>
         </div>
       </div>
-        <!-- <section id='study'>
-            <div class="row">
-              <div class="col m11 offset-m1 headTitle" style="font-size:180%">
-                  
-                <hr/>
-              </div>
-            </div>
-            </section> -->
       <script type="text/javascript" src="lib/materialize/js/materialize.min.js"></script>
      
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -321,20 +279,21 @@
           $("#loading").show();
           set3DModel('visualization', `object (`+iterationObject+`)`, $("#modal1" ).width(), $("#modal1" ).height()).then(()=>{
           // console.log('GO')
-          $("#loading").hide();
-        })
+            $("#loading").hide();
+          })
         }
       })
       $( "#next" ).click(function() {
-        // console.log(iterationObject)
-        if (iterationObject <= 39){
+        console.log(iterationObject)
+        if (iterationObject <= 38){
           iterationObject++;
           $("#loading").show();
           set3DModel('visualization', `object (`+iterationObject+`)`, $("#modal1" ).width(), $("#modal1" ).height()).then(()=>{
           // console.log('GO')
-          $("#loading").hide();
-        })
+            $("#loading").hide();
+          })
         }
+        
       })
   
       $( ".modal-trigger" ).click(function() {

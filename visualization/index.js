@@ -39,9 +39,11 @@ var data = [
 var data_ = []; 
 var idArray = {};
 var globalArray = {};
+var typearray = [];
  d3.csv("visualization/data.csv", function(dataCSV){
    // d3.csv("data - Copy - Copy.csv", function(dataCSV){
-   delete dataCSV['2D First']
+   delete dataCSV['2D First'];
+   delete dataCSV['Order']
    // console.log(JSON.stringify(dataCSV))
 
    
@@ -80,6 +82,8 @@ var globalArray = {};
       // data_.push(objectToCreate);
       globalArray[concat].push(objectToCreate)
 
+      if (typearray.indexOf(arrayCoding[coding]) == -1) typearray.push(arrayCoding[coding]);
+
    }
 }).then(()=>{
 
@@ -88,14 +92,14 @@ var globalArray = {};
    for (var i in globalArray){
 
       var array = globalArray[i];
-      // console.log(array)
+      // console.log(i)
 
       var arraySorted = array.sort(function(a, b) {
          return b.part - a.part;
      });
-     for (var k = 1; k<arraySorted.length; k++){
-      //   console.log(k)
-         arraySorted[k]['id_'] = k;
+     for (var k = 0; k<arraySorted.length; k++){
+         // console.log(k)
+         arraySorted[k]['id_'] = k+1;
       }
 
      data_ = data_.concat(arraySorted)
@@ -103,6 +107,7 @@ var globalArray = {};
    //   break;
    //   console.log(arraySorted)
    }
+   console.log(globalArray)
    // console.log(data_)
    // data_ = data_.sort(function(a,b) {
    //    var x = a.concat - b.concat;
@@ -110,7 +115,7 @@ var globalArray = {};
    // })
 
    launchViz(data_);
-   console.log('HELLO', data_)
+   // console.log('HELLO', data_)
 });
 // launchViz(data);
 function launchViz(data){
@@ -118,8 +123,8 @@ function launchViz(data){
 
 
       // set the dimensions and margins of the graph
-      var margin = {top: 20, right: 20, bottom: 30, left: 200},
-         width = 1000 - margin.left - margin.right,
+      var margin = {top: 20, right: 20, bottom: 30, left: 300},
+         width = 1500 - margin.left - margin.right,
          height = 3500 - margin.top - margin.bottom;
 
       // set the ranges
@@ -187,30 +192,32 @@ function launchViz(data){
                });
 
 
+         // MY BAR ==> GROUP OF BARS
             var g = place.append('g')
             .attr("transform", function(d) {
+               // if (d.type == "Personal - Making it personal" && d.Condition == "VR") console.log(d)
+
                var y = y1(d.Condition);
-
-               console.log(y)
                var x = (Math.ceil (d.id_/3));
-
-               var y2 = (d.id_ - x*3) * 25;
-               // console.log(x2, y)
-               // return "translate(" +  (x + x2) + ", "+ (height-(y*25))+")"; 
+               var y2 = (d.id_ - x*3) * 25; 
                return "translate("+(x*25)+","+(y+y2+60)+")"; 
             
             })
             
          g.append("rect")
             .attr("class", "bar")
-            .attr("x", 3)
-            .attr("width", 15)
-            .attr("y", 0)
-            .attr("height",15)
+            .attr("x", -1)
+            .attr("width", 22)
+            .attr("y", -2)
+            .attr("height",22)
             // .attr("fill",function(d,i){ 
             //    if (d.part == 13) return 'red'
             // })
-            .attr("fill",function(d,i){ return colorParticipant(d.Participant) });//console.log(dParticipant)})
+            .attr("fill",function(d,i){ 
+               // if (d.type == "Personal - Making it personal" && d.id_ == 1) return 'red'
+               // else  
+               return colorParticipant(d.Participant) 
+            });//console.log(dParticipant)})
 
          g.append("svg:image")
          .attr('x', 0)
@@ -227,12 +234,9 @@ function launchViz(data){
 //   .call(d3.axisBottom(x));
 
 // add the y Axis
-svg.append("g")
-  .call(d3.axisLeft(y));
+svg.append("g").call(d3.axisLeft(y));
 
-
-
-
+// console.log(d3.axisLeft(y))
 
       var div = d3.select("body").append("div")	
             .attr("class", "tooltip")				
@@ -243,20 +247,65 @@ svg.append("g")
             
            
       svg.selectAll('.tick text').each(insertLinebreaks);
+      svg.selectAll('.tick text')
+         .style('font-family',  '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif');
+
+         // console.log(typearray)
+            var tickSecond = svg.selectAll('.secondTick')
+               .data(typearray).enter()
+               .append("g").attr('class','.secondTick')
+               .attr("transform", function(d){
+                 return "translate(-25,"+(y(d) + 93)+")"
+               })
+               tickSecond.append("text")
+               .attr("class", "bar")
+               .attr("x", 3)
+               .attr("y", -33).style('font-weight',  '700')
+               .text(function (d) { return "VR"; } );
+
+               tickSecond.append("text")
+               .attr("class", "bar")
+               .attr("x", 3)
+               .attr("y", 62).style('font-weight',  '700')
+               .text(function (d) { return "2D"; } );
+            
+         // place.selectAll("text")
+         // .data(function (d) { return d.Condition; })
+         // .enter()
+         // .append("text")
+         // .attr("x", function (d) { console.log(d); return x(d.column) })
+         // // .attr("y", function (d) { )})
+         // .text(function (d) { return "hello"; } );
+      //    svg.append("g")return y1(d.Condition) - 6;
+      //   .selectAll("g")
+      //   .data(data_).enter()
+      //   .append("g")
+      //       .attr("class", "axis")
+      //       .attr("transform", "translate("+width+",0)")
+      //       .attr("y", function (d) { return y1(d.Condition); })
+      //       .call(d3.axisBottom(y1))
 
 }
 var insertLinebreaks = function (d) {
    var el = d3.select(this);
-   var words = d.split(' ');
+   var words = d.split('-');
    el.text('');
    var j =0
    for (var i = 0; i < words.length; i++) {
        var tspan = el.append('tspan').text(words[i]+" ");
-       j++
-       if (j > 5){
-         tspan.attr('x', -20).attr('dy', '15');
-         j=0;
+       if (i!=0){
+         tspan.attr('x', -10).attr('dy', '15');
+         tspan.style('font-size',  '10px')
        }
+       else{
+         tspan.style('font-size',  '18px')
+         tspan.style('font-weight',  '700')
+       }
+      //  j++
+      //  if (j > 3){
+         
+      //    j=0;
+      //  }
           
    }
 };

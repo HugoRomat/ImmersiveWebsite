@@ -136,7 +136,7 @@ function set3DModel(idElement, path, width, height){
       var plane = new THREE.Mesh( geometry, material );
       
       plane.rotation.set(-Math.PI/2, Math.PI/2000, Math.PI); 
-      plane.position.y = -1;
+      plane.position.y = -2;
       scene.add( plane );
 
       // console.log(scene)
