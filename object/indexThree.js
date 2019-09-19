@@ -41,8 +41,8 @@ var promiseArray = [];
 
 
 
-function set3DModel(idElement, path, width, height){
-
+function set3DModel(idElement, pathFolder, path, width, height){
+   // console.log(idElement, pathFolder, path)
 
    return new Promise((resolve, reject) => {
       // <div class="col m4"></div>
@@ -54,7 +54,7 @@ function set3DModel(idElement, path, width, height){
 
 
     
-      console.log(width, height)
+      
 
       var element = document.getElementById(idElement)
 
@@ -69,8 +69,8 @@ function set3DModel(idElement, path, width, height){
 
       
       var camera = new THREE.PerspectiveCamera( 75, width/ height, 0.1, 1000 );
-      camera.position.set(0, -1,1); // Set position like this
-      camera.lookAt(new THREE.Vector3(0,0,0));
+      camera.position.set(0, 2,15); // Set position like this
+      // camera.lookAt(new THREE.Vector3(0,0,0));
 
 
 
@@ -89,9 +89,14 @@ function set3DModel(idElement, path, width, height){
 				controls.dampingFactor = 0.05;
 				controls.screenSpacePanning = false;
 				// controls.minDistance = 100;
-				// controls.maxDistance = 500;
+            // controls.maxDistance = 500;
+            
+
             controls.maxPolarAngle = Math.PI / 2;
             controls.minPolarAngle = Math.PI / 2;
+
+
+            
       // controls.enableDamping = true;
       // controls.dampingFactor = 0.25;
       // controls.enableZoom = true;
@@ -131,20 +136,20 @@ function set3DModel(idElement, path, width, height){
 //       scene.add( light );
 
 
-      var geometry = new THREE.PlaneGeometry( 5, 5, 32 );
+      var geometry = new THREE.PlaneGeometry( 30, 30, 32 );
       var material = new THREE.MeshBasicMaterial( {color: 0xebebeb, side: THREE.DoubleSide} );
-      var plane = new THREE.Mesh( geometry, material );
+      // var plane = new THREE.Mesh( geometry, material );
       
-      plane.rotation.set(-Math.PI/2, Math.PI/2000, Math.PI); 
-      plane.position.y = -2;
-      scene.add( plane );
+      // plane.rotation.set(-Math.PI/2, Math.PI/2000, Math.PI); 
+      // plane.position.y = -10;
+      // scene.add( plane );
 
       // console.log(scene)
 
       var mtlLoader = new THREE.MTLLoader();
       
-      mtlLoader.setTexturePath('object/userObj/');
-      mtlLoader.setPath('object/userObj/');
+      mtlLoader.setTexturePath('object/' + pathFolder + '/');
+      mtlLoader.setPath('object/' + pathFolder + '/');
 
       mtlLoader.setMaterialOptions({side: THREE.DoubleSide})
       mtlLoader.load('bmp.mtl', function (materials) {
@@ -155,10 +160,33 @@ function set3DModel(idElement, path, width, height){
 
          var objLoader = new THREE.OBJLoader();
          objLoader.setMaterials(materials);
-         objLoader.setPath('object/userObj/');
+         objLoader.setPath('object/' + pathFolder + '/');
          objLoader.load(path+'.obj', function (object) {
 
+
+
+            object.traverse( function ( child ) {
+
+               if ( child instanceof THREE.Mesh ) {
+
+                  // child.material = material;
+                  child.geometry.center();
+
+               }
+            })
             scene.add(object);
+            object.position.y = -1;
+
+            var box = new THREE.Box3().setFromObject( object );
+            var widthObject = box.max.x - box.min.x
+            var heightObject = box.max.y - box.min.y
+            var depthObject = box.max.z - box.min.z
+
+            // console.log(widthObject, heightObject);
+            // console.log()
+            object.scale.multiplyScalar((10 / widthObject));
+
+            /* // scene.add(object);
             // object.position.y -= 60;
             // object.children[0].scale.set(50,50,50)
 
@@ -172,15 +200,21 @@ function set3DModel(idElement, path, width, height){
             //Rescale the object to normalized space
             var maxAxis = Math.max(size.x, size.y, size.z);
             object.scale.multiplyScalar((1.0 / maxAxis) + 0.5);
+
+            // console.log('HEY')
             // object.scale.multiplyScalar(30)
             //Now get the updated/scaled bounding box again..
             bbox.setFromObject(object);
             bbox.getCenter(cent);
             bbox.getSize(size);
       
-            object.position.x = -cent.x;
+
+            object.position.x = 0;
             object.position.y = 0;
-            object.position.z = -cent.z;
+            object.position.z = 0;
+            // object.position.x = -cent.x;
+            // object.position.y = 0;
+            // object.position.z = -cent.z;
 
             // object.rotation.x = 90 * (Math.PI / 180)
             // object.rotation.y = -90 * (Math.PI / 180)
@@ -190,7 +224,7 @@ function set3DModel(idElement, path, width, height){
             // camera.lookAt(scene.position);
             // camera.rotation.z = 65 * (Math.PI / 180)
 
-            // console.log(object)
+            // console.log(object)*/
             resolve()
 
          });

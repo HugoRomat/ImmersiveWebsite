@@ -18,6 +18,11 @@
       }
       nav .nav-wrapper {
       }
+      .downloadCSV{
+        width: 25px !important;
+        position: relative;
+        top: 7px;
+      }
       div.tooltip {	
         position: absolute;
         text-align: center;
@@ -33,9 +38,7 @@
         pointer-events: none;
         font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
       }
-      .imagesVR{
-        margin: 3px;
-      }
+      
       nav.nav-center ul {
           text-align: center;
       }
@@ -67,12 +70,7 @@
         width: 100%;
         /* height: 100%; */
       }
-      #sketches{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
+      
       #modal1{
         top: 5% !important;
         max-height: none;
@@ -83,23 +81,27 @@
         display: flex;
       justify-content: space-between;
       }
-      .VR{
+      /* .VR{
         margin-bottom: 20px;
         
   
-      }
-      .VR img{
+      } */
+      /* .VR img{
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-      }
+      } */
       
-      .image2D{
+      /* .image2D{
         margin-bottom: 20px;
         
   
-      }
-      .image2D img{
+      } */
+      /* .imagesVR{
+        margin: 3px;
+      } */
+      /* .image2D img{
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-      }
+      } */
+      
       #loading{
         position: absolute;
         left: 47%;
@@ -116,6 +118,23 @@
         width: 90%; 
         margin-left: 5%; 
       }
+      #sketches,#sketches2D, #Object3D, #sketches2Dchoosen{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .GlyphsVR, .ImagesVR, .image2D{
+        width: 120px;
+        margin: 5px;
+       
+      }
+      .image2D img, .GlyphsVR img, .ImagesVR img, .sketches2Dchoosen img{
+        width: 100%;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+      }
+      
+      
     </style>
   
     <body>
@@ -160,57 +179,69 @@
       <div id="body">
         <section id="study">
           <div class="row">
-            <div class="col m12 headTitle" style="font-size:180%">
+            <div class="col m12 headTitle" style="font-size:200%">
                 Material from the study
               <hr>
             </div>
-            <div class="col m12 headTitle" style="font-size:180%">
+            
+            <div class="col m12 headTitle" style="font-size:160%">
                 Glyphs drawn in the VR condition
             </div>
             <div class="col m12" style="font-size:130%">
-                You can click on an image to see it in a 3D viewer.
+              You can click on an image to see it in a 3D viewer.
             </div>
           </div>
-  
-  
           <div class="row" id="sketches"></div>
+
+
+
+
+          <div class="row">
+            <div class="col m12 headTitle" style="font-size:160%">
+                Models available in the VR condition
+            </div>
+            <div class="col m12" style="font-size:130%">
+              You can click on an image to see it in a 3D viewer.
+            </div>
+          </div>
+          <div class="row" id="Object3D"></div>
+
   
           <div class="row">
-              <div class="col m12 headTitle" style="font-size:180%">
+              <div class="col m12 headTitle" style="font-size:160%">
                 Glyphs drawn in the 2D condition
               </div>
-              <!-- <div class="col m12">
-                  Clik on an image to see it in the viewer -->
+             
             </div>
   
             <br/>
-            <div class="row" id="2Dsketches"></div>
-            <!-- Modal Structure -->
-          <div id="modal1" class="modal">
-            <div class="modal-content">
-              <div id='buttons'>
-                <p><button id="previous" class="waves-effect waves-light btn">Previous</button></p>
-                <p id="loading"><img src="images/loader.gif" /></p>
-                <p><button id="next" class="waves-effect waves-light btn">Next</button></p>
+            <div class="row" id="sketches2D"></div>
+
+
+            <div class="row">
+              <div class="col m12 headTitle" style="font-size:160%">
+                Models available in the 2D condition
               </div>
-              <p id="visualization"></p>
             </div>
-            <!-- <div class="modal-footer">
-              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-            </div> -->
-          </div>
-        
-            
-        
   
-  
-  
-          
-  
-        </section>
+            <br/>
+            <div class="row" id="sketches2Dchoosen"></div>
+
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+              <div class="modal-content">
+                <div id='buttons'>
+                  <p><button id="previous" class="waves-effect waves-light btn">Previous</button></p>
+                  <p id="loading"><img src="images/loader.gif" /></p>
+                  <p><button id="next" class="waves-effect waves-light btn">Next</button></p>
+                </div>
+                <p id="visualization"></p>
+              </div>
+            </div>
+          </section>
         <section id="results">
             <div class="row">
-              <div class="col m12  headTitle" style="font-size:180%">
+              <div class="col m12  headTitle" style="font-size:200%">
                   Results from the study
                 <hr>
               </div>
@@ -220,7 +251,10 @@
               <div class="col m12  headTitle" style="font-size:120%">
                   Each square represent a specific quote that a participants made about a specific condition.
                   <br/>
-                  You can hover it to see the quote.   
+                  You can hover it to see the quote. 
+                  <br/>
+                  <a href="visualization/data.csv"><img class='downloadCSV' src="images/csv.png" />   You can click here to download the CSV file </a> 
+
               </div>
               
             </div>
@@ -248,25 +282,36 @@
       <script>
   $("#loading").hide();
         var iterationObject = 0;
+        var itemChoosen = 'userObj';
         // <a  data="`+i+`" href="#modal1"><div class="col m3 VR"><img src="images/Vrimages/1.PNG" /></div></a>
         // <a class="waves-effect waves-light btn modal-trigger" data="`+i+`" href="#modal1"></a>
       for (var i = 1; i< 40; i++){
         $( "#sketches" ).append(`
-        <div class="col m2 l1 VR">
-            <a class="modal-trigger" data="`+i+`" href="#modal1"><img src="images/VRimages/`+i+`.PNG" /></a>
-          </div>
-          
-        `)
-        $( "#2Dsketches" ).append(`
-        <div class="col m2 l1 image2D">
+        <div class="GlyphsVR">
+            <a class="modal-trigger" data="`+i+`_userObj" href="#modal1"><img src="images/VRimages/`+i+`.PNG" /></a>
+          </div>`)
+        $( "#sketches2D" ).append(`
+        <div class="image2D">
           <img src="images/2Dsketch/P (`+i+`).png" />
-          </div>
-          
-        `)
-  
-        
-        
+          </div>`)
       }
+
+
+      for (var i = 1; i< 17; i++){
+        $( "#Object3D" ).append(`
+        <div class="ImagesVR">
+            <a class="modal-trigger" data="`+i+`_3dshapes" href="#modal1"><img src="images/VRchooseImages/`+i+`.PNG" /></a>
+          </div>`)
+      }
+
+      for (var i = 1; i< 49; i++){
+        $( "#sketches2Dchoosen" ).append(`
+        <div class="image2D">
+           <img src="images/2DchooseImages/`+i+`.png" />
+          </div>`)
+      }
+
+      
   
   
    document.addEventListener('DOMContentLoaded', function() {
@@ -277,7 +322,7 @@
         if (iterationObject >= 2){
           iterationObject--;
           $("#loading").show();
-          set3DModel('visualization', `object (`+iterationObject+`)`, $("#modal1" ).width(), $("#modal1" ).height()).then(()=>{
+          set3DModel('visualization',itemChoosen, `object (`+iterationObject+`)`, $("#modal1" ).width(), $("#modal1" ).height()).then(()=>{
           // console.log('GO')
             $("#loading").hide();
           })
@@ -285,10 +330,10 @@
       })
       $( "#next" ).click(function() {
         console.log(iterationObject)
-        if (iterationObject <= 38){
+        if ((iterationObject <= 38 && itemChoosen == 'userObj') || (iterationObject <= 15 && itemChoosen == '3dshapes')){
           iterationObject++;
           $("#loading").show();
-          set3DModel('visualization', `object (`+iterationObject+`)`, $("#modal1" ).width(), $("#modal1" ).height()).then(()=>{
+          set3DModel('visualization',itemChoosen, `object (`+iterationObject+`)`, $("#modal1" ).width(), $("#modal1" ).height()).then(()=>{
           // console.log('GO')
             $("#loading").hide();
           })
@@ -297,10 +342,13 @@
       })
   
       $( ".modal-trigger" ).click(function() {
-        var data = $(this).attr('data');
+        var data = $(this).attr('data').split('_')[0];
+        var path = $(this).attr('data').split('_')[1]
         // $("#loading").html('loading')
         $("#loading").show();
-        set3DModel('visualization', `object (`+data+`)`, $("#modal1" ).width(), $("#modal1" ).height()).then(()=>{
+        // console.log('visualization', path, `object (`+data+`)`)
+        itemChoosen = path;
+        set3DModel('visualization', path, `object (`+data+`)`, $("#modal1" ).width(), $("#modal1" ).height()).then(()=>{
           console.log('GO')
           $("#loading").hide();
         })
