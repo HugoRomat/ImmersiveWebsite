@@ -224,7 +224,13 @@ function launchViz(data){
          .attr('y', 0)
          .attr('width', 20)
          .attr('height', 20)
-         .attr("xlink:href", "visualization/avatar.png")
+         .attr("xlink:href", function(d,i){
+            if (d.type == "Not Enjoy - any verbal expression/word of non-enjoyment (sigh, frustration, dislike, uncomfort)")  return  "visualization/avatar.png";
+            else return  "visualization/sun.png";
+            // console.log(d)
+           
+
+         })
          // .attr("xlink:href", "visualization/avatar.png")
          .attr('class', 'svgimg')
 
