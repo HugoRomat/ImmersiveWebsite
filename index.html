@@ -391,11 +391,25 @@
           </div>`)
       }
 
-      for (var i = 1; i< 49; i++){
-        $( "#sketches2Dchoosen" ).append(`
-        <div class="cell">
-           <img src="images/2DchooseImages/`+i+`.png" />
+
+      // for (var i = 1; i< 49; i++){
+      //   $( "#sketches2Dchoosen" ).append(`
+      //   <div class="cell">
+      //      <img src="images/2DchooseImages/`+i+`.png" />
+      //     </div>`)
+      // }
+      var k =1;
+      for (var j = 0; j< 6; j++){
+        var entity = $('#sketches2Dchoosen').append('<div class="rowTab"></div>');
+        var divEntity = $('#sketches2Dchoosen').children(":last")
+        for (var i = 0; i< 8; i++){
+          // console.log(k)
+          divEntity.append(`
+          <div class="cell">
+            <img src="images/2DchooseImages/`+(k)+`.png" />
           </div>`)
+          k++;
+        }
       }
 
       
